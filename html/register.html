@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>TopReading - 用户注册</title>
+<link href="../images/title.jpg" rel="shortcut icon" />
+<!--注册-->
+<!--link href="../css/register/global.css" rel="stylesheet" type="text/css"-->
+<link href="../css/login/basic.css" rel="stylesheet" type="text/css">
+<link href="../css/register/register.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/register/jquery-1.9.0.min.js"></script> 
+<script type="text/javascript" src="../js/register/mooc_register3.js"></script>
+</head>
+<body>
+<div class="header wp">
+	<div class="logo"><h1><a href="/topreading"><img src="../images/logo.jpg"width="147"height="90" style=vertical-align:middle></a>&nbsp&nbsp用户注册</h1></div>
+</div>
+<div class="wrapper">
+<div class="global_error" id="global_error">&nbsp;</div>
+<div class="left">
+<form id="form" name="form" action="../Register" method="post">
+	<input type="hidden" id="fromID" name="fid" value="0">
+	<input type="hidden" id="nameID" name="valName" value="-1">
+	<!--用户名-->
+	<div class="inputone">
+	<span class="labelname">用户名：</span>
+		<input type="text" class="longinput" id="uname" name="uname" value="" onfocus="hideError(&#39;error_uname&#39;)" onblur="isValName(this)">
+		<span class="alerts" id="error_uname">
+		        <span id="error_uname2" style="display: none;">
+				<span class="points">!</span>用户名不允许为空				</span>
+				<span id="error_uname3" style="display: none;">
+				    <span class="points">!</span>用户名最大长度为50个字符				</span>
+				<span id="error_uname4" style="display: none;">
+				    <span class="points">!</span>用户名仅允许汉字,字母和数字				</span>
+				<span id="error_uname5" style="display: none;">
+				    <span class="points">!</span>用户已存在				</span>
+		</span>
+	</div>
+
+	<!--密码-->
+	<div class="inputone">
+	<span class="labelname">密码：</span>
+	<input type="password" id="password" name="password" value="" class="longinput" onfocus="hideError(&#39;error_password&#39;)" onkeydown="setPasswordLeve(this)" onblur="checkPasssword(this)">
+	<span class="alerts" id="error_password">
+	     <span id="error_password1" style="display: none;">
+				<span class="points">!</span>密码不能为空		 </span>
+		 <span id="error_password3" style="display: none;">
+				<span class="points">!</span>密码为6-16个字符		 </span>
+	</span>
+	<div class="passwordlevel">
+			密码安全程度 : 
+			<span class="fontcolor" id="passwordLev1">
+                 <span id="passwordLev1_1" style="display: none;">一般</span>
+				 <span id="passwordLev1_2" style="display: none;">中</span>
+				 <span id="passwordLev1_3" style="display: none;">高</span>
+			</span>
+			<div class="progressouter" id="passwordLev2"><div class="progressinner"></div></div>
+	</div>
+	</div>
+	<div class="inputone">
+		<span class="labelname">确认密码：</span>
+		<input type="password" id="password2" name="password2" value="" class="longinput" onfocus="hideError(&#39;error_password2&#39;)" onkeydown="keydownSubmit(event)">
+		<span class="alerts" id="error_password2">
+		 <span id="error_password2_1" style="display: none;">
+				<span class="points">!</span>两次密码不一致		 </span>
+		</span>
+	</div>
+
+	     <div class="inputone"><input type="button" class="clickregister" value="注册" onclick="mysubmit(&#39;form&#39;);"></div>
+	</form>
+	</div>
+</div>
+<div class="copy wp">免责说明: TopReading只作于内部学习交流用,不用于商业用途. 所收录免费小说、书友评论、用户上传文字、图片等其他一切内容均属用户个人行为,与开发人员无关.<br>Copyright &#169;2015 <a href="/topreading">topreading.com</a> Beta All Rights Reserved.</div>
+</body></html>
