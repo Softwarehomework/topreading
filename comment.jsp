@@ -49,7 +49,7 @@
       <li class="home"><a href="index.jsp">首页</a></li>
       <li><a href="#">电子书</a></li>
       <li><a href="#">会员</a></li>
-	  <li><a href="comment.jsp">书评区</a></li>
+	  <li><a href="bookmark.jsp">书评区</a></li>
       <!--<li><a href="http://www.bookbao.com/BookList-c_0-t_2-o_1.html">热门书籍</a></li>
       <li><a href="http://www.bookbao.com/BookList-c_0-t_1-o_0.html">最新书籍</a></li>
       <li><a href="http://www.bookbao.com/BookList-c_1-t_0-o_0.html">青春</a></li>
@@ -78,11 +78,13 @@
    
     <div class="gb_nav">发布留言</div>
         <div class="gb_post">
-          <form id="form" name="form" action="/topreading/Login" method="post">  
-        网名：<input name="Post_Name" type="text" id="Post_Name" class="my_textbox" style="width:250px;"><span id="Chk2" style="color:Red;value:;display:none;">必须填写网名！</span>
+          <form id="form" name="form" action="/topreading/TransComment" method="post">  
+        网名：<input name="Post_Name" type="text" id="Post_Name" class="my_textbox" style="width:250px;"><span id="Chk1" style="color:Red;value:;display:none;">必须填写网名！</span>
+        <br>
+		书名：<input name="Book_Name" type="text" id="Book_Name" class="my_textbox" style="width:250px;"><span id="Chk2" style="color:Red;value:;display:none;">必须填写书名！</span>
         <br>
         内容：<textarea name="Post_Content" rows="2" cols="20" id="Post_Content" class="my_textbox" style="height:120px;width:500px;"></textarea>
-            <span id="Chk1" style="color:Red;display:none;">必须填写内容！</span><br>
+            <span id="Chk3" style="color:Red;display:none;">必须填写内容！</span><br>
 
             <br>
             <br>
@@ -101,15 +103,24 @@
 <script >
 function check_and_submit(){
 	var Post_Name = document.getElementById("Post_Name");
+	var flag=true;
 	if(Post_Name.value==""){
-		alert("必须填写网名！")
+		alert("必须填写网名！");
+		flag=false;
+	}
+	var Book_Name = document.getElementById("Book_Name");
+	if(flag==true && Book_Name.value==""){
+		alert("必须填写书名！")
+		flag=false;
 	}
 	var Post_Content = document.getElementById("Post_Content");
-	if(Post_Content.value==""){
+	if(falg==true && Post_Content.value==""){
 		alert("必须填写内容！")
+		flag=false;
 	}
 }
-var Page_Validators =  new Array(document.getElementById("Chk2"), document.getElementById("Chk1"));
+if(flag)
+	var Page_Validators =  new Array(document.getElementById("Chk2"), document.getElementById("Chk1"));
 
 </script>
 

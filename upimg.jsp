@@ -8,9 +8,11 @@
 function uppic(){
     window.opener.document.getElementById('filepath').value=document.getElementById('newpath').value;
     window.close();
+
 }
 function closewindow(){
-	window.opener.document.getElementById('filepath').value=document.getElementById('newpath').value;
+	System.out.println("I'm In Here!");
+	//window.opener.document.getElementById('filepath').value=document.getElementById('newpath').value;
     //关闭窗口时,把上传后的图片名称放到父窗口的图片路径中
 }
 </script>
@@ -18,12 +20,12 @@ function closewindow(){
 	SmartUpload mySmartUpload = new SmartUpload();
 	long file_size_max = 4000000;
 	String ext = "";
-	String url = "uploadimg/"; //应保证在根目录中有此目录的存在
+	String url = "books/"; //应保证在根目录中有此目录的存在
 	//初始化
 	mySmartUpload.initialize(pageContext);
 	//只允许上载此类文件
 	try {
-		mySmartUpload.setAllowedFilesList("jpg,gif");
+		mySmartUpload.setAllowedFilesList("txt");
 		//上载文件 
 		mySmartUpload.upload();
 		out.println("<p align=\"center\">上传成功!</p>");
@@ -32,7 +34,7 @@ function closewindow(){
 	} catch (Exception e) {
 %>
 <SCRIPT language=javascript>
-  alert("只允许上传.jpg和.gif类型图片文件");
+  alert("只允许上传.txt文件");
   window.location='upload.jsp';
   </script>
 <%
@@ -47,15 +49,18 @@ function closewindow(){
 </script>
 <%
 			} else {
-			//String myFileName=myFile.getFileName(); //取得上载的文件的文件名
+			String myFileName=myFile.getFileName(); //取得上载的文件的文件名
 			ext = myFile.getFileExt(); //取得后缀名
 			int file_size = myFile.getSize(); //取得文件的大小  
 			String saveurl = "";
 			if (file_size < file_size_max) {
 		//更改文件名，取得当前上传时间的毫秒数值
 		Calendar calendar = Calendar.getInstance();
-		String filename = String.valueOf(calendar
-				.getTimeInMillis());
+		//String filename = String.valueOf(calendar
+		//		.getTimeInMillis());
+		String filename1 = myFileName.split("\\.")[0];
+		String filename = new String(filename1.getBytes(), "GBK");
+		//String filename = new String("傻逼");
 		saveurl = request.getRealPath("/") + url;
 		saveurl += filename + "." + ext; //保存路径
 		myFile.saveAs(saveurl, mySmartUpload.SAVE_PHYSICAL);

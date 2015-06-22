@@ -86,7 +86,6 @@
 
 	
 		<div class ="up">
-		<title>上传图片</title>
 		<script type="text/javascript">
  function doup(){
    form1.action="upimg.jsp";
@@ -102,7 +101,7 @@
 		</p>
 		<form name="form1" method="post" enctype="multipart/form-data"
 			action="upimg.jsp">
-			<table width=100% height="48" align="center">
+			<table table width=100% height="48"align="center">
 				<tr align="center">
 					<td>
 						<font color="black">请选择要上传书籍的地址:</font>
@@ -112,7 +111,7 @@
 					<td align="center">
 						<input type="file" name="file1" size=15 class="an">
 						&nbsp;&nbsp;
-						<input type="submit" name="Submit" value="上传" class="an">
+						<input type="submit" name="Submit" value="上传"class="dn">
 					</td>
 				</tr>
 
@@ -150,7 +149,6 @@
 
 
 
-</div>
 <div class="copy wp">免责说明: TopReading只作于内部学习交流用,不用于商业用途. 所收录免费小说、书友评论、用户上传文字、图片等其他一切内容均属用户个人行为,与开发人员无关.<br>Copyright &#169;2015 <a href="index.jsp">topreading.com</a> Beta All Rights Reserved.</div>
 
 </body></html>

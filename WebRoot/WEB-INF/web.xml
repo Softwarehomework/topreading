@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>topreading</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 配置监听器 用于监听重复登录-->
+	<listener>
+		<listener-class>org.top.listener.loginListener</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>org.top.servlet.Login</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>org.top.servlet.Logout</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Register</servlet-name>
+		<servlet-class>org.top.servlet.Register</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>TransComment</servlet-name>
+		<servlet-class>org.top.servlet.TransComment</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Request</servlet-name>
+		<servlet-class>org.top.book.Request</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/Logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Register</servlet-name>
+		<url-pattern>/Register</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TransComment</servlet-name>
+		<url-pattern>/TransComment</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Request</servlet-name>
+		<url-pattern>/Request</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

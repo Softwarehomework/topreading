@@ -1,0 +1,50 @@
+﻿@charset "utf-8";
+.wp{
+	width: 1000px;
+	margin-top: 5px;
+	margin-right: auto;
+	margin-bottom: 5px;
+	margin-left: auto;
+}
+.copy{ text-align:center; padding:15px;line-height:25px;}
+.copy a:hover{ color:#e59524;}
+.header{ height:100px; overflow:hidden;border-bottom:2px solid #e3e3e3;}
+.header .logo{ float:left; margin-top:10px; overflow:hidden; margin-right:40px;}
+.header .logo h1{padding:0px; font-size:34px; font-weight:normal;padding-bottom:5px;}
+.points{width:18px;height:18px;background:#f00;display:inline-block;border-radius:9px;text-align:center;color:#fff;margin:0px 5px 0px 0px}
+.logo a{margin-right:20px;}
+.loginFail{ color:red; margin-bottom: 20px;}
+
+.zcenter { width:1000px; margin: 0 auto;background-color:#fff;color:#353535; font-size:14px;}
+.zblue a:link,
+.zblue a:visited,
+.zblue a:hover,
+.zblue a:active { color: #2ca4de;}
+.zlogin { padding-top:60px; padding-bottom:140px;width:1000px;margin: 0 0;}
+.table_tr{width:800px;}
+.table_td1{ width:150px;}
+.table_td12{ width:500px;text-align:left;}
+.table_td2{ width:320px;text-align: left;}
+.table_td3{ text-align: left;}
+.zl_cursor { cursor:pointer;}
+.zl_right { text-align:right;}
+.zl_left { text-align:left;}
+.zl_tr_top18 td { padding-top:18px;} 
+.zl_tr_top0 td { padding-top:0px; line-height:40px;}
+.zl_h2 {padding:0px; font-size:36px; font-weight:normal; padding-left:230px;padding-bottom:5px;}
+.zl_name { padding-left:200px; padding-right:5px; text-align:right; height:40px;}
+.zl_input { width:320px; height:40px; padding-left:5px; padding-right:5px; border:1px #ccc solid; border-radius:4px; background:none; line-height:40px; font-size:14px; color:#999;}
+.zl_input2 { width:320px; height:40px; padding-left:5px; padding-right:5px; border:1px #ccc solid; border-radius:4px; background:none; line-height:40px; font-size:14px; color:#555;}
+.zl_prompt { padding-left:9px;}
+.zl_btn_right { display:block; width:332px; height:40px; border:0; background:none; background:url(/topreading/images/login/login_btn_right.jpg) right no-repeat; line-height:40px; text-align:center; cursor:pointer; color:#fff; font-size:16px;}
+.click_login{ display:block; width:332px;height:40px;line-height:40px;text-align:center;background:#e59524;border-radius:3px;border:none;cursor:pointer;font-size:16px;color:#fff;}
+.zl_h2 a{font-size:14px;}
+.zl_h2 a:link,
+.zl_h2 a:visited,
+.zl_h2 a:hover,
+.zl_h2 a:active { color: #2ca4de;}
+.table_td2 a{font-size:12px;}
+.table_td2 a:link,
+.table_td2 a:visited,
+.table_td2 a:hover,
+.table_td2 a:active { color: #2ca4de;}

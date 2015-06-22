@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.util.*,org.top.bean.*,org.top.dao.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*,java.io.*,java.lang.*,org.top.bean.*,org.top.dao.*" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +48,7 @@
 	<%
 		}
 	%>
-    <div class="top_r"><a href="uploadbook.jsp" class="ico_up">上传书籍</a>|<a href="#">留言</a>|<a href="#" target"_blank"="">联系我们</a></div>
+    <div class="top_r"><a href="uploadbook.jsp" target="_blank" class="ico_up">上传书籍</a>|<a href="#">留言</a>|<a href="#" target"_blank"="">联系我们</a></div>
   </div>
 </div>
 <script type="text/javascript">ChkCookie();</script>
@@ -66,7 +66,7 @@
   <div class="wp">
     <ul>
       <li class="home"><a href="index.jsp">首页</a></li>
-      <li><a href="#">电子书</a></li>
+      <li><a href="allbooks.jsp">电子书</a></li>
       <li><a href="#">会员</a></li>
 	  <li><a href="bookmark.jsp">书评区</a></li>
       <!--<li><a href="http://www.bookbao.com/BookList-c_0-t_2-o_1.html">热门书籍</a></li>
@@ -90,13 +90,84 @@
 --<script type="text/javascript" src="js/SuperSlide.js"></script>
 </div>
 
+<%
+		TreeMap<Long,File> tm = new TreeMap<Long,File>();
+		
+		
+	 File file = new File("webapps\\topreading\\books");
+	  File subFile[] = file.listFiles();
+	  int fileNum = subFile.length;
+	  for (int i = 0; i < fileNum; i++) {
+	   Long tempLong = new Long(subFile[i].lastModified());
+	   tm.put(tempLong, subFile[i]);
+	  }
+	  
+//	  System.out.println("按时间从前到后排序--->");
+//	  System.out.println("最早的一个文件的路径-->"+tm.get(tm.firstKey()).getPath());
+//	  System.out.println("最近的一个文件的路径-->"+tm.get(tm.lastKey()).getPath());
+	  
+	  Set<Long> set = tm.keySet();
+	  Iterator<Long> it = set.iterator();
+	  
+	  int i = 0;
+	  int size = set.size();
+	  String names[] = new String[size];
+	  
+	  while (it.hasNext()) {
+	   Object key = it.next();
+	   Object objValue = tm.get(key);
+	   File tempFile = (File) objValue;
+	   Date date=new Date((Long)key);
+	  // System.out.println(tempFile.getPath() + "\t"+date);
+	   names[i] = new String(tempFile.getName());
+			   
+		i ++;
+		
+		if(i == size)
+			break;
+	  }
+	  
+	  String[] true_names = new String[9];
+	  
+	  for(i = 0; i < 9; i ++)
+	  {
+		  true_names[i] = names[size - i - 1].split("\\.")[0];
+		  //System.out.println(true_names[i]);
+	  }
+	  
+	  	String[] random_names = new String[8];
+		  int ra = new Random().nextInt(size - 1) % size;
+		  for(int j = 0; j < 8; j ++)
+		  {
+			  int k = (ra + j) % size;
+			  System.out.printf("k is %d\n", k);
+			  //random_names[j] = names[k];
+			  random_names[j] = names[k].split("\\.")[0];
+			  System.out.println(random_names[j]);
+		  }
+		  String[] random_names1 = new String[15];
+		  ra = new Random().nextInt(size - 1) % size;
+		  for(int j = 0; j < 15; j ++)
+		  {
+			  int k = (ra + j) % size;
+			  //random_names1[j] = names[k];
+			  random_names1[j] = names[k].split("\\.")[0];
+		  }
+	  %>
+
+
+
+
+
+
+
 <div class="wp">
   <div class="l260">
     <div class="banner b4">
       <ul style="position: relative; width: 258px; height: 318px;">
-        <li style="position: absolute; width: 258px; left: 0px; top: 0px;"><a href="#"><img src="images/152206.jpg" width="258" height="318"></a></li>
-        <li style="position: absolute; width: 258px; left: 0px; top: 0px; display: none;"><a href="#"><img src="images/9787544143615.jpg" width="258" height="318"></a></li>
-        <li style="position: absolute; width: 258px; left: 0px; top: 0px; display: none;"><a href="#"><img src="images/279759.jpg" width="258" height="318"></a></li>
+        <li style="position: absolute; width: 258px; left: 0px; top: 0px;"><a href="jsp/readbook.jsp?name=红楼梦" target="_blank"><img src="images/152206.jpg" width="258" height="318"></a></li>
+        <li style="position: absolute; width: 258px; left: 0px; top: 0px; display: none;"><a href="jsp/readbook.jsp?name=何以笙箫默" target="_blank"><img src="images/9787544143615.jpg" width="258" height="318"></a></li>
+        <li style="position: absolute; width: 258px; left: 0px; top: 0px; display: none;"><a href="jsp/readbook.jsp?name=百年孤独" target="_blank"><img src="images/279759.jpg" width="258" height="318"></a></li>
       </ul>
       <div class="banner_x"><span class="on">1</span><span>2</span><span>3</span></div>
     </div>
@@ -131,39 +202,43 @@
     <div class="w498z bj_fa">
       <i class="ico_new"></i>
       <dl class="sy_tt">
-        <dt><a href="#" >[历史]</a><a href="jsp/book1.jsp" ><h2>红楼梦</h2></a> 上传：<a href="#" >小小12345</a></dt>
-		<dd><a href="jsp/book2.jsp" target="_blank" >三国演义</a> </dd>
-		<dd><a href= "jsp/book3.jsp" target="_blank" >水浒传</a> </dd>
-		<dd><a href="jsp/book4.jsp" target="_blank" >西游记</a> </dd>
+	  <script>
+</script>
+        <dt><a href="jsp/readbook.jsp?name=<%=random_names1[0]%>" target="_blank"><h2><%=random_names1[0]%></h2></dt>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[1]%>" target="_blank" ><%=random_names1[1]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[2]%>" target="_blank" ><%=random_names1[2]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[3]%>" target="_blank" ><%=random_names1[3]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[4]%>" target="_blank" ><%=random_names1[4]%></a> </dd>
 		
-		<dt><a href="#" >[言情]</a><a href="#" target="_blank"><h2>何以笙箫默</h2></a> 上传：<a href="#" >jade123</a></dt>
-		<dd><a href="#" target="_blank">左耳</a> </dd>
-		<dd><a href="#" target="_blank">人生若只如初见</a> </dd>
-		<dd><a href="#" target="_blank">非我倾城</a> </dd>
-		<dd><a href="#" target="_blank">致青春</a> </dd>
-		<dt><a href="#" >[名著]</a><a href="#" target="_blank"><h2>百年孤独</h2></a> 上传：<a href="#" >雪笑冰</a>
-		<dd><a href="#" target="_blank">苏菲的世界</a> </dd>
-		<dd><a href="#" target="_blank">生命中不能承受之轻</a> </dd>
-		<dd><a href="#" target="_blank">追风筝的人</a> </dd>
-		<dd><a href="#" target="_blank">假如给我三天光明</a> </dd>
+		<dt><a href="jsp/readbook.jsp?name=<%=random_names1[5]%>" target="_blank"><h2><%=random_names1[5]%></h2></dt>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[6]%>" target="_blank" ><%=random_names1[6]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[7]%>" target="_blank" ><%=random_names1[7]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[8]%>" target="_blank" ><%=random_names1[8]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[9]%>" target="_blank" ><%=random_names1[9]%></a> </dd>
+		
+		<dt><a href="jsp/readbook.jsp?name=<%=random_names1[10]%>" target="_blank"><h2><%=random_names1[10]%></h2></dt>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[11]%>" target="_blank" ><%=random_names1[11]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[12]%>" target="_blank" ><%=random_names1[12]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[13]%>" target="_blank" ><%=random_names1[13]%></a> </dd>
+		<dd><a href="jsp/readbook.jsp?name=<%=random_names1[14]%>" target="_blank" ><%=random_names1[14]%></a> </dd>
       </dl>
     </div>
     <div class="w498z">
       <dl class="sy_tj">
-        <ul class="twxun3"><dt><a href="#" ><img src="images/123.jpg" width="105" height="135" alt="史记"></a><a href="#" ><h2>史记</h2></a><p>汉代的司马迁编写的中国历史上第一部纪传体通史，记载了从黄帝到汉武帝太初年间三千多年的历史.&nbsp;
-</p><div class="x"><span>[下载]</span><a href="#" >Txt下载</a><span>[阅读]</span><a href="#" >全文阅读</a></div></dt>
-<dd><a href="#" target="_blank" class="lv">汉书</a></dd>
-<dd><a href="#" target="_blank" class="lv">三国志</a></dd>
-<dd><a href="#" target="_blank" class="lv">晋书</a></dd>
-<dd><a href="#" target="_blank" class="lv">宋书</a></dd>
-<dd><a href="#" target="_blank" class="lv">梁书</a></dd>
-<dd><a href="#" target="_blank" class="lv">南齐书</a></dd>
-<dd><a href="#" target="_blank" class="lv">北齐书</a></dd>
-<dd><a href="#" target="_blank" class="lv">旧唐书</a></dd>
-<dd><a href="#" target="_blank" class="lv">宋史</a></dd>
-<dd><a href="#" target="_blank" class="lv">金史</a></dd>
-<dd><a href="#" target="_blank" class="lv">元史</a></dd>
-<dd><a href="#" target="_blank" class="lv">明史</a></dd>
+        <ul class="twxun3"><dt><a href="jsp/readbook.jsp?name=史记" target="_blank"><img src="images/123.jpg" width="105" height="135" alt="史记"></a><a href="jsp/readbook.jsp?name=史记" target="_blank" ><h2>史记</h2></a><p>汉代的司马迁编写的中国历史上第一部纪传体通史，记载了从黄帝到汉武帝太初年间三千多年的历史.&nbsp;
+</p><div class="x"><span>[阅读]</span><a href="jsp/readbook.jsp?name=史记" target="_blank">全文阅读</a></div></dt>
+<dd><a href="jsp/readbook.jsp?name=汉书" target="_blank" class="lv">汉书</a></dd>
+<dd><a href="jsp/readbook.jsp?name=三国志" target="_blank" class="lv">三国志</a></dd>
+<dd><a href="jsp/readbook.jsp?name=晋书" target="_blank" class="lv">晋书</a></dd>
+<dd><a href="jsp/readbook.jsp?name=宋书" target="_blank" class="lv">宋书</a></dd>
+<dd><a href="jsp/readbook.jsp?name=梁书" target="_blank" class="lv">梁书</a></dd>
+<dd><a href="jsp/readbook.jsp?name=南齐书" target="_blank" class="lv">南齐书</a></dd>
+<dd><a href="jsp/readbook.jsp?name=北齐书" target="_blank" class="lv">北齐书</a></dd>
+<dd><a href="jsp/readbook.jsp?name=旧唐书" target="_blank" class="lv">旧唐书</a></dd>
+<dd><a href="jsp/readbook.jsp?name=宋史" target="_blank" class="lv">宋史</a></dd>
+<dd><a href="jsp/readbook.jsp?name=金史" target="_blank" class="lv">金史</a></dd>
+<dd><a href="jsp/readbook.jsp?name=元史" target="_blank" class="lv">元史</a></dd>
+<dd><a href="jsp/readbook.jsp?name=明史" target="_blank" class="lv">明史</a></dd>
 
       </dl>
     </div>
@@ -172,28 +247,28 @@
     <div class="w218 b2">
       <div class="bt1">新书推荐</div>
 		<ul class="twxun3"><li class="p"><i>1</i>
-		<a href="#" target="_blank"><img src="images/4.jpg" width="65" height="80" alt="窦娥冤"></a>
-		<a href="#" target="_blank"><h3>窦娥冤</h3></a><p>元代戏曲家关汉卿的杂剧代表作，也是元杂剧悲剧的典范。&nbsp;<br></p></li><li><i>2</i>
-		<a href="#" target="_blank" class="lv">肖申克的救赎</a></li><li><i>3</i>
-		<a href="#" target="_blank" class="lv">二刻拍案惊奇</a></li><li><i>4</i>
-		<a href="#" target="_blank" class="lv">骆驼祥子</a></li><li><i>5</i>
-		<a href="#" target="_blank" class="lv">Life+of+Pi</a></li><li><i>6</i>
-		<a href="#" target="_blank" class="lv">鬼谷子</a></li><li><i>7</i>
-		<a href="#" target="_blank" class="lv">论语</a></li><li><i>8</i>
-		<a href="#" target="_blank" class="lv">大宅门</a></li></ul>
+		<!--<a href="jsp/readbook.jsp?name=<%=random_names[0]%>" target="_blank"><img src="images/4.jpg" width="65" height="80" alt="窦娥冤"></a>-->
+		<a href="jsp/readbook.jsp?name=<%=random_names[0]%>" target="_blank" class="lv"><%=random_names[0]%></a></li><li><i>2</i>
+		<a href="jsp/readbook.jsp?name=<%=random_names[1]%>" target="_blank" class="lv"><%=random_names[1]%></a></li><li><i>3</i>
+		<a href="jsp/readbook.jsp?name=<%=random_names[2]%>" target="_blank" class="lv"><%=random_names[2]%></a></li><li><i>4</i>
+		<a href="jsp/readbook.jsp?name=<%=random_names[3]%>" target="_blank" class="lv"><%=random_names[3]%></a></li><li><i>5</i>
+		<a href="jsp/readbook.jsp?name=<%=random_names[4]%>" target="_blank" class="lv"><%=random_names[4]%></a></li><li><i>6</i>
+		<a href="jsp/readbook.jsp?name=<%=random_names[5]%>" target="_blank" class="lv"><%=random_names[5]%></a></li><li><i>7</i>
+		<a href="jsp/readbook.jsp?name=<%=random_names[6]%>" target="_blank" class="lv"><%=random_names[6]%></a></li><li><i>8</i>
+		<a href="jsp/readbook.jsp?name=<%=random_names[7]%>" target="_blank" class="lv"><%=random_names[7]%></a></li></ul>
     </div>
     <div class="w218 b4">
       <div class="bt4">今日上传书籍</div>
       <ul class="xsxun1"><li><i class="ico_x1"></i>
-	  <a href="#" target="_blank" class="lv">大学</a></li><li><i class="ico_x2"></i>
-	  <a href="#" target="_blank" class="lv">孟子</a></li><li><i class="ico_x3"></i>
-	  <a href="#" target="_blank" class="lv">论语</a></li><li><i class="ico_x4"></i>
-	  <a href="#" target="_blank" class="lv">中庸</a></li><li><i class="ico_x5"></i>
-	  <a href="#" target="_blank" class="lv">左传</a></li><li><i class="ico_x6"></i>
-	  <a href="#" target="_blank" class="lv">礼记</a></li><li><i class="ico_x7"></i>
-	  <a href="#" target="_blank" class="lv">周易</a></li><li><i class="ico_x8"></i>
-	  <a href="#" target="_blank" class="lv">尚书</a></li><li><i class="ico_x9"></i>
-	  <a href="#" target="_blank" class="lv">诗经</a></li>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[0]%>" target="_blank" class="lv"><%=true_names[0]%></a></li><li><i class="ico_x2"></i>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[1]%>" target="_blank" class="lv"><%=true_names[1]%></a></li><li><i class="ico_x3"></i>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[2]%>" target="_blank" class="lv"><%=true_names[2]%></a></li><li><i class="ico_x4"></i>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[3]%>" target="_blank" class="lv"><%=true_names[3]%></a></li><li><i class="ico_x5"></i>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[4]%>" target="_blank" class="lv"><%=true_names[4]%></a></li><li><i class="ico_x6"></i>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[5]%>" target="_blank" class="lv"><%=true_names[5]%></a></li><li><i class="ico_x7"></i>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[6]%>" target="_blank" class="lv"><%=true_names[6]%></a></li><li><i class="ico_x8"></i>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[7]%>" target="_blank" class="lv"><%=true_names[7]%></a></li><li><i class="ico_x9"></i>
+	  <a href="jsp/readbook.jsp?name=<%=true_names[8]%>" target="_blank" class="lv"><%=true_names[8]%></a></li>
     </div>
   </div>
   <div class="c"></div>

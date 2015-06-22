@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.util.*,org.top.bean.*,org.top.dao.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*,java.io.*,org.top.bean.*,org.top.dao.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <meta http-equiv=Pragma content=no-cache>
 <meta http-equiv=Cache-Control content=no-cache>
 <meta http-equiv=Expires content=0>
-<link href="css/style.css" type="text/css" rel="stylesheet">
+<link href="css/bookmark.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/m.js"></script>
 <!--script type="text/javascript" src="js/ajax.js"></script-->
@@ -50,20 +50,6 @@
       <li><a href="#">电子书</a></li>
       <li><a href="#">会员</a></li>
 	  <li><a href="#">书评区</a></li>
-      <!--<li><a href="http://www.bookbao.com/BookList-c_0-t_2-o_1.html">热门书籍</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_0-t_1-o_0.html">最新书籍</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_1-t_0-o_0.html">青春</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_2-t_0-o_0.html">言情</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_3-t_0-o_0.html">穿越</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_4-t_0-o_0.html">武侠</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_5-t_0-o_0.html">玄幻</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_6-t_0-o_0.html">耽美</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_7-t_0-o_0.html">悬疑</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_8-t_0-o_0.html">都市</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_9-t_0-o_0.html">历史</a></li>
-      <li><a href="http://www.bookbao.com/BookList-c_10-t_0-o_0.html">经管</a></li>
-      <li><a href="http://www.bookbao.com/Topten.html">排行榜</a></li>
-      <li><a href="http://www.bookbao.com/QuanBook/List_1.html"><span>全本书库</span></a></li>-->
     </ul>
     <div class="wzgg"><span>[通告]</span> 本站禁止用户上传色情淫秽类、反动类、政治相关类等小说 如果发现将通报网安部门追究相应的法律责任。 </div>
   </div>
@@ -79,12 +65,32 @@
 <div class="rev_le">
 
 <ul>
-  <li><div class="rev_1"><br>□《<a href="#" target="_blank">论语</a>》 君子是一个意义深刻的词。从小就听说什么“君子动口不动手”、“观棋不语真君子”等，感觉君子就像个呆呆的人似的。事实上，君子就是孔子他们儒家学派的一种自称，是理想的“中庸”的人。比如“君子不器”、“先行其言而后从之斗”，都体现了君子的优良品质。与君子相对的当然就是小人了，小人并非是坏人，只是素质没有君子高罢了。《论语》花了相当篇幅直截了当的阐明君子和小人的不同点，如“君子坦荡荡，小人常戚戚”、“君子周而不比，小人比而不周”。然而，君子的物质地位往往与小人相差甚远。毛泽东说过：“小人累君子，君子当存慈悲之心以救小人。”可见君子的物质生活是那么的悲惨！<br>
+
+<%
+FileReader fr = new FileReader("D:\\comment.txt");
+BufferedReader br = new BufferedReader(fr);
+String temp=null;
+while((temp=br.readLine())!=null){
+	String []temp2=temp.split("\t");
+	String book_name=temp2[0];
+	String content=temp2[1];
+	String user_name=temp2[2];
+	String date=temp2[3];
+	
+%>	
+<li><div class="rev_1"><br>□《<a href="#" ><%=book_name%></a>》<%=content%><br></div>	
+<div class="rev_2"><a href="#" ><%=user_name%></a><%=date%> </div></li>
+<%	
+}
+%>
+
+
+  <li><div class="rev_1"><br>□《<a href="#" >论语</a>》 君子是一个意义深刻的词。从小就听说什么“君子动口不动手”、“观棋不语真君子”等，感觉君子就像个呆呆的人似的。事实上，君子就是孔子他们儒家学派的一种自称，是理想的“中庸”的人。比如“君子不器”、“先行其言而后从之斗”，都体现了君子的优良品质。与君子相对的当然就是小人了，小人并非是坏人，只是素质没有君子高罢了。《论语》花了相当篇幅直截了当的阐明君子和小人的不同点，如“君子坦荡荡，小人常戚戚”、“君子周而不比，小人比而不周”。然而，君子的物质地位往往与小人相差甚远。毛泽东说过：“小人累君子，君子当存慈悲之心以救小人。”可见君子的物质生活是那么的悲惨！<br>
 人，垃圾过时的破书</div>
 <div class="rev_2"><a href="#" >mxqfox</a> 2015-06-10 20:30:18  </div></li>
-  <li><div class="rev_1"><br>□《<a href="#" target="_blank">窦娥冤</a>》 应该是中学的时候，学过其中的章节。当时主要是被神话情节所感染，六月飞雪，想不到人的冤屈竟能感天动地。至于窦娥是怎么冤枉的，不甚明了。昨日闲来无事，在IBOOKS上看了一遍，这才有了通篇的了解。有了了解才发现，这篇故事不但夸张也缺乏逻辑。 1、窦娥不愿与张驴儿成亲，被其冤枉，告上县衙。那张驴儿无赖一个，要钱没钱，而蔡婆婆却广有钱财，人脉也广（从她经常放高利贷可以看出）。而县官贪婪成性，为何蔡婆婆不能...... </div>
+  <li><div class="rev_1"><br>□《<a href="#" >窦娥冤</a>》 应该是中学的时候，学过其中的章节。当时主要是被神话情节所感染，六月飞雪，想不到人的冤屈竟能感天动地。至于窦娥是怎么冤枉的，不甚明了。昨日闲来无事，在IBOOKS上看了一遍，这才有了通篇的了解。有了了解才发现，这篇故事不但夸张也缺乏逻辑。 1、窦娥不愿与张驴儿成亲，被其冤枉，告上县衙。那张驴儿无赖一个，要钱没钱，而蔡婆婆却广有钱财，人脉也广（从她经常放高利贷可以看出）。而县官贪婪成性，为何蔡婆婆不能...... </div>
 <div class="rev_2"><a href="#" >文史哲</a> 2015-06-10 04:32:43  </div></li>
-<li><div class="rev_1"><br>□《<a href="#" target="_blank">窦娥冤</a>》 应该是中学的时候，学过其中的章节。当时主要是被神话情节所感染，六月飞雪，想不到人的冤屈竟能感天动地。至于窦娥是怎么冤枉的，不甚明了。昨日闲来无事，在IBOOKS上看了一遍，这才有了通篇的了解。有了了解才发现，这篇故事不但夸张也缺乏逻辑。 1、窦娥不愿与张驴儿成亲，被其冤枉，告上县衙。那张驴儿无赖一个，要钱没钱，而蔡婆婆却广有钱财，人脉也广（从她经常放高利贷可以看出）。而县官贪婪成性，为何蔡婆婆不能...... </div>
+<li><div class="rev_1"><br>□《<a href="#" >窦娥冤</a>》 应该是中学的时候，学过其中的章节。当时主要是被神话情节所感染，六月飞雪，想不到人的冤屈竟能感天动地。至于窦娥是怎么冤枉的，不甚明了。昨日闲来无事，在IBOOKS上看了一遍，这才有了通篇的了解。有了了解才发现，这篇故事不但夸张也缺乏逻辑。 1、窦娥不愿与张驴儿成亲，被其冤枉，告上县衙。那张驴儿无赖一个，要钱没钱，而蔡婆婆却广有钱财，人脉也广（从她经常放高利贷可以看出）。而县官贪婪成性，为何蔡婆婆不能...... </div>
 <div class="rev_2"><a href="#" >文史哲</a> 2015-06-10 04:32:43  </div></li>
   
   
